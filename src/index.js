@@ -1,4 +1,14 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './app';
+import {BrowserRouter} from 'react-router-dom'
 
+const root = ReactDOM.createRoot(document.getElementById('main'));
+root.render(
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+);
 
-
-
+console.log("Table should have just rendered");
