@@ -1,6 +1,6 @@
-import React from 'react'
+/* import React from 'react'
 import {Link, useLocation} from 'react-router-dom'
-import { LeagueLeaders } from './LeagueLeaders'
+import  LeagueLeaders  from './LeagueLeaders'
 
 export function Home() {
     return (
@@ -41,3 +41,4 @@ export function NavBar(){
         </nav>
     )
 }
+ */

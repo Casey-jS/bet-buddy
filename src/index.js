@@ -6,9 +6,6 @@ import {BrowserRouter} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('main'));
 root.render(
-    <BrowserRouter>
     <App />
-    </BrowserRouter>
 );
 
-console.log("Table should have just rendered");

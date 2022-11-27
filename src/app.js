@@ -1,52 +1,49 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Top10Table from './components/Top10Table';
-import fetchTop10 from './nbaAPI';
 import {useState, useEffect} from 'react'
 import BasePage from './BasePage'
-import { LeagueLeaders } from './LeagueLeaders';
-import {Routes, Route } from 'react-router-dom'
+import  LeagueLeaders  from './LeagueLeaders';
+import Teams from './Teams'
+import HomePage from './HomePage';
 
-
-import {
-    Home,
-    NavBar,
-    NewBet,
-    LeagueLeadersTab,
-    NotFound
-} from './tabs'
 
 function App(){
 
-    /* const [table, setTable] = useState([]);
+    const [TabToShow, showTab] = useState("home");
 
-    let getTop10Stat = () => {
-        fetchTop10("rpg").then(
-            data => {
-                setTable(data)
-            }
-        )
+    let setView = (viewToShow) => {
+        showTab(viewToShow);
     }
 
-    useEffect(getTop10Stat, []); */
-                
+
+    useEffect(setView, []);
+    
     return (
         <div>
-          <Routes>
-            <Route path="/" element={
-                <>
-                    <NavBar />
-                    <BasePage />
-                </>}
-            />
-            <Route path="/home" element={<Home />} />
-            <Route path="/newBet" element={<NewBet />} />
-            <Route path="/leagueLeaders" element={<LeagueLeadersTab />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>    
+            <button id="showTeams" onClick={() => setView("teams")}>Teams Dashboard</button>
+            <button id="showLeagueLeaders" onClick={() => setView("leagueleaders")}>Show League Leaders</button>
+          
+            {TabToShow === "leagueleaders" ? <LeagueLeaders /> : ''}
+            {TabToShow === "teams" ? <Teams /> : ''}
+            {TabToShow === "home" ? <HomePage /> : ''}
         </div>
     );
 }
 
 
 export default App;
+
+
+
+
+{/* <Routes>
+            <Route path="/" element={
+                <>
+                    <NavBar /> 
+                </>}
+            />
+            <Route path="/home" element={<Home />} />
+            <Route path="/newBet" element={<NewBet />} />
+            <Route path="/leagueLeaders" element={<LeagueLeadersTab />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>  */}

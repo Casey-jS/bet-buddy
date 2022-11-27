@@ -1,4 +1,9 @@
-td {
+:root{
+    background-color: #8e9190;
+}
+
+
+/* td {
     text-align: center;
 }
 
@@ -8,4 +13,4 @@ table, tr, td {
 
 table {
     border-collapse: collapse;
-}
+} */
