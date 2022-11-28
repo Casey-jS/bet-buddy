@@ -7,7 +7,7 @@ export default function NavMenu(){
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="/home/">BetBuddy</Navbar.Brand>
+                    <Navbar.Brand href="/">[Name]</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
@@ -19,11 +19,21 @@ export default function NavMenu(){
                             </LinkContainer>
                             
                             <NavDropdown title="League Leaders" id="collapsible-nav-dropdown">
-                                <NavDropdown.Item href="leagueleaders/ppg/">Points</NavDropdown.Item>
-                                <NavDropdown.Item href="leagueleaders/apg/">Assists</NavDropdown.Item>
-                                <NavDropdown.Item href="leagueleaders/rpg/">Rebounds</NavDropdown.Item>
-                                <NavDropdown.Item href="leagueleaders/spg/">Steals</NavDropdown.Item>
-                                <NavDropdown.Item href="leagueleaders/bpg/">Blocks</NavDropdown.Item>
+                                <LinkContainer to="/players/sort/ppg/">
+                                    <NavDropdown.Item>Points</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="/players/sort/apg/">
+                                    <NavDropdown.Item >Assists</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="/players/sort/rpg/">
+                                    <NavDropdown.Item>Rebounds</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="/players/sort/spg/">
+                                    <NavDropdown.Item>Steals</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="players/sort/bpg">
+                                    <NavDropdown.Item>Blocks</NavDropdown.Item>
+                                </LinkContainer> 
                             </NavDropdown>
                         </Nav>
                         <Nav>

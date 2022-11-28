@@ -1,42 +1,26 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import Top10Table from './components/Top10Table';
 import NbaAPI from './nbaAPI';
 
-
-
-export default function LeagueLeaders(){
+export default function LeagueLeaders({stat}){
     const [table, setTable] = useState([]);
-    const [stat, setStat] = useState("ppg");
-    let api = new  NbaAPI();
-    let getPlayers = () => {
+    let api = new NbaAPI();
+
+    const getPlayers = useCallback(() => {
         api.fetchTop10(stat).then(
-                data => {
-                    setTable(data); // occupy table with data from fetch
-                }
+            data => {
+                setTable(data); // occupy table with data from fetch
+            }
         )
-    }
-
-    useEffect(getPlayers, [])
-
-    return (
-        <div> 
-            <label htmlFor="sortBy"></label>
-            <select name="sortBy" id="sortBy" onchange={(event) => {
-                setStat(event.target.value);
-                getPlayers();
-            }}>
-                <option value="ppg">PTS</option>
-                <option value="apg">AST</option>
-                <option value="rpg">REB</option>
-                <option value="spg">STL</option>
-                <option value="bpg">BLK</option>
-            </select>
-            <Top10Table players={table} />
-        </div> 
-    )
+      }, [stat])
+    
+      useEffect(() => {
+        getPlayers();
+      }, [getPlayers]);
 
 
+    return  <Top10Table players={table} />;
 }
 
 
