@@ -10,7 +10,14 @@ export default class NbaAPI{
         const response = await fetch('http://127.0.0.1:5000/teams/');
         return await response.json();
     }
+
+    async fetchHeadshot(id){
+        const response = await fetch("https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + id + ".png");
+        return await response.blob();
+    }
 }
+
+
 
 
 

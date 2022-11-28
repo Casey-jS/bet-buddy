@@ -1,7 +1,24 @@
+import NbaAPI from "../nbaAPI";
+import {useState, useEffect, useCallback} from 'react'
 export default function Top10Row(props){
-    console.log("[Top10Row]")
-    console.log(props)
+
+    const [image, setImage] = useState("/");
+
+    let api = new NbaAPI();
+    const getHeadshot = useCallback(() => {
+        api.fetchHeadshot(props.id).then(
+            imageBlob => {
+                setImage(URL.createObjectURL(imageBlob)); // occupy image with img fetched
+            }
+        )
+      }, [props.id])
+    
+      useEffect(() => {
+        getHeadshot();
+      }, [getHeadshot]);
+
     return <tr>
+        <td style={{width: 60}}><img src={image} style={{width: 50}}></img></td>
         <td>{props.fullName}</td>
         <td>{props.team}</td>
         <td>{props.age}</td>
