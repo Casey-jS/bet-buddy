@@ -1,6 +1,6 @@
 import NbaAPI from "../nbaAPI";
 import {useState, useEffect, useCallback} from 'react'
-export default function Top10Row(props){
+export default function PlayerRow(props){
 
     const [image, setImage] = useState("/");
 
@@ -19,7 +19,7 @@ export default function Top10Row(props){
 
     return <tr>
         <td style={{width: 60}}><img src={image} style={{width: 50}}></img></td>
-        <td>{props.fullName}</td>
+        <td><a href={"/players/" + props.id + "/"}>{props.fullName}</a></td>
         <td>{props.team}</td>
         <td>{props.age}</td>
         <td>{props.gp}</td>

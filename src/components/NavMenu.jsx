@@ -14,10 +14,6 @@ export default function NavMenu(){
                             <LinkContainer to="/teams/">
                                 <Nav.Link>Teams</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/leagueleaders/ppg/">
-                                <Nav.Link>Point Leaders</Nav.Link>
-                            </LinkContainer>
-                            
                             <NavDropdown title="League Leaders" id="collapsible-nav-dropdown">
                                 <LinkContainer to="/players/sort/ppg/">
                                     <NavDropdown.Item>Points</NavDropdown.Item>
