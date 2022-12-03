@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import HomePage from './HomePage';
 import NbaAPI from './nbaAPI';
@@ -6,12 +6,22 @@ import NbaAPI from './nbaAPI';
 
 export default function SignIn() {
 
+
+
+  const [userName, setUserName] = useState("default");
+  const [password, setPassword] = useState("default");
   const [valid, setValid] = useState(false);
   const [message, setMessage] = useState("");
+
+  const [finalUsername, setFinalUsername] = useState("");
+  const [finalPassword, setFinalPassword] = useState("");
+
+
   let api = new NbaAPI();
-  let validateSignIn = () => {
-    api.validateSignIn().then(
+  const validateSignIn = useCallback(() => {
+    api.validateSignIn(finalUsername, finalPassword).then(
       response => {
+        console.log(response);
         if (response["is_valid"]){
           setValid(true);
         }
@@ -19,10 +29,25 @@ export default function SignIn() {
           setMessage("Invalid Username/Password");
         }
       }
+    ).catch(
+      err => {
+        console.log(err);
+      }
     )
+    }, [finalUsername])
+
+  useEffect(() => {
+    validateSignIn();
+  }, [validateSignIn]);
+  
+
+  const setFinals = (event) => {
+    event.preventDefault();
+    setFinalPassword(password);
+    setFinalUsername(userName);
   }
 
-  useEffect(validateSignIn, []);
+  
 
 
   if (valid){
@@ -42,12 +67,12 @@ export default function SignIn() {
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-uppercase ">Bet Buddy</h2>
                   <div className="mb-3">
-                    <Form>
+                    <Form onSubmit={setFinals}>
                       <Form.Group className="mb-3">
                         <Form.Label className="text-center">
                           Username
                         </Form.Label>
-                        <Form.Control type="username" placeholder="Enter username" />
+                        <Form.Control type="username" placeholder="Enter username" onChange={e => setUserName(e.target.value)} />
                       </Form.Group>
 
                       <Form.Group
@@ -55,7 +80,7 @@ export default function SignIn() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"

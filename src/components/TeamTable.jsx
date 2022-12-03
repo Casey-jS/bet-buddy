@@ -6,9 +6,6 @@ import TeamHeader from './TeamHeader'
 import { Routes, Route } from 'react-router-dom';
 export default function TeamTable(props){
 
-    console.log("props passed into TeamTable:");
-    console.log(props);
-    console.log(props.teams[0]);
     return (
     <Table striped bordered hover variant="dark"> <tbody><TeamHeader /> {
         props.teams.map((team, i) => (

@@ -23,21 +23,27 @@ export default class NbaAPI{
     }
 
     async validateSignIn(user, pswd){
+        console.log("Value passed into api: " + user);
         const postOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json',
+                        'Accept' : 'application/json'},
             body: JSON.stringify({ username: user, password: pswd })
         };
-
-    
         // send username and password to api
-        const response = await fetch("http://127.0.0.1:5000/validateuser/", postOptions)
-        return await response.json()
+        const response = await fetch("http://127.0.0.1:5000/validateuser/", postOptions);
+        return await response.json();
     }
 
     async fetchPlayer(playerID){
         
-        const response = await fetch("http://127.0.0.1:5000/players/" + playerID + "/")
+        const response = await fetch("http://127.0.0.1:5000/players/" + playerID + "/");
+        return await response.json();
+    }
+
+    async getLastFiveGames(playerID){
+        const response = await fetch("http://127.0.0.1:5000/last5/" + playerID + "/");
         return await response.json();
     }
 }
