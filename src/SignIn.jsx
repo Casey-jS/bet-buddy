@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import UserContext from './UserContext';
 import HomePage from './HomePage';
 import NbaAPI from './nbaAPI';
 
@@ -7,7 +8,7 @@ import NbaAPI from './nbaAPI';
 export default function SignIn() {
 
 
-
+  const { user, setUser } = useContext(UserContext);
   const [userName, setUserName] = useState("default");
   const [password, setPassword] = useState("default");
   const [valid, setValid] = useState(false);
@@ -23,6 +24,7 @@ export default function SignIn() {
       response => {
         console.log(response);
         if (response["is_valid"]){
+          setUser( {finalUsername} )
           setValid(true);
         }
         else{

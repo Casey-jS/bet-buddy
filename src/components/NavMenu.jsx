@@ -1,8 +1,10 @@
+import { useContext } from 'react'
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import UserContext from '../UserContext'
 
 export default function NavMenu(){
-
+    const { user } = useContext(UserContext);
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -33,7 +35,8 @@ export default function NavMenu(){
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="/signin/">Sign In</Nav.Link>
+                            {user != {} ? <Nav.Link>{user}</Nav.Link> : <div></div>}
+                            {user == {} ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
