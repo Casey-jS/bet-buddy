@@ -1,7 +1,6 @@
-import TeamLogRow from './TeamLogRow.jsx'
-import React, { useState } from 'react'
+import TeamLogRow from './TeamLogRow'
 import {Table} from 'react-bootstrap'
-import TeamLogHeader from './TeamLogHeader'
+import {TeamLogHeader} from '../Headers'
 
 export default function TeamLog(props){
 

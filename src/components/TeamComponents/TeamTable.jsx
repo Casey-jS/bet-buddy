@@ -2,8 +2,7 @@ import {Table} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import TeamRow from "./TeamRow"
-import TeamHeader from './TeamHeader'
-import { Routes, Route } from 'react-router-dom';
+import {TeamHeader} from '../Headers'
 export default function TeamTable(props){
 
     return (

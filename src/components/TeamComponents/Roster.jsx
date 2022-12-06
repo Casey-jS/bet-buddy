@@ -1,6 +1,6 @@
 import React from 'react'
-import LeagueLeaderHeader from './LeagueLeaderHeader'
-import PlayerRow from './PlayerRow'
+import {LeagueLeaderHeader} from '../Headers'
+import PlayerRow from '../PlayerRow'
 import { Table } from 'react-bootstrap'
 
 export default function Roster(props){

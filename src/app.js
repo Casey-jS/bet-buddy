@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import LeagueLeaders  from './LeagueLeaders';
-import Teams from './Teams'
+import Teams from './components/TeamComponents/Teams'
 import HomePage from './HomePage';
 import {Routes, Route} from 'react-router-dom'
 import NavMenu from './components/NavMenu';
-import TeamViewWrapper from './components/TeamViewWrapper';
+import TeamViewWrapper from './components/TeamComponents/TeamViewWrapper';
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import PlayerViewWrapper from './components/PlayerViewWrapper';
@@ -17,7 +17,6 @@ function App(){
     const [user, setUser] = useState("")
     return (
         <> 
-            
             <UserContext.Provider value={{user, setUser}}>
                 <NavMenu />
                 <Routes>

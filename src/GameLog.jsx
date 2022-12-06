@@ -1,5 +1,5 @@
 import React from "react";
-import GameLogHeader from "./components/GameLogHeader";
+import {GameLogHeader} from "./components/Headers";
 import GameLogRow from "./components/GameLogRow";
 import { Table } from "react-bootstrap";
 

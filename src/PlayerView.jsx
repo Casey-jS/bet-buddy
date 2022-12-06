@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import { Card, ListGroup, Button } from "react-bootstrap";
 import GameLog from "./GameLog";
 import NbaAPI from "./nbaAPI";
+import UserContext from "./UserContext";
 
 
 export default function PlayerView({playerID}){
+
+    const { user, setUser } = useContext(UserContext);
 
     const [player, setPlayer] = useState([]);
     const [picture, setPicture] = useState("/");
@@ -58,6 +61,8 @@ export default function PlayerView({playerID}){
                     <ListGroup.Item variant='dark'>APG: {player['apg']}</ListGroup.Item>
                     <ListGroup.Item variant='dark'>RPG: {player['rpg']}</ListGroup.Item>
                 </ListGroup>
+                {user === "" ? <Button variant='secondary'>Sign in to access</Button> : <Button variant='info'>+ Add to favorites</Button>}
+                
             </Card>
             <h1>Last 5 Games</h1>
             <GameLog className="position-absolute top-0 end-0" games={gameLog} style={{marginLeft: "20px"}} />
