@@ -24,3 +24,9 @@ export function TeamHeader(){
         <th>3pt %</th>
     </tr>);
 }
+
+export function StandingsHeader(){
+    return (
+        <tr><th>Rank</th><th>Name</th><th>Overall</th><th>Home</th><th>Away</th><th>Last 10</th></tr>
+    );
+}

@@ -79,6 +79,15 @@ export default class NbaAPI{
         const response = await fetch("http://127.0.0.1:5000/teamlogs/" + teamID + "/")
         return await response.json();
     }
+
+    async get_west_standings(){
+        const response = await fetch("http://127.0.0.1:5000/standings/0/")
+        return await response.json();
+    }
+    async get_east_standings(){
+        const response = await fetch("http://127.0.0.1:5000/standings/1/")
+        return await response.json();
+    }
 }
 
 
