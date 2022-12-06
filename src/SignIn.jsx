@@ -8,7 +8,7 @@ import NbaAPI from './nbaAPI';
 export default function SignIn() {
 
 
-  const { user, setUser } = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
   const [userName, setUserName] = useState("default");
   const [password, setPassword] = useState("default");
   const [valid, setValid] = useState(false);
@@ -20,11 +20,12 @@ export default function SignIn() {
 
   let api = new NbaAPI();
   const validateSignIn = useCallback(() => {
-    api.validateSignIn(finalUsername, finalPassword).then(
+    api.validateSignIn(finalUsername, finalPassword).then( // validate sign in credentials
       response => {
         console.log(response);
-        if (response["is_valid"]){
-          setUser( {finalUsername} )
+        if (response["is_valid"]){ // if flask says the user exists in the database
+          console.log("Attempting to set active user to " +  finalUsername)
+          setUser(finalUsername) // update context
           setValid(true);
         }
         else{
@@ -45,6 +46,7 @@ export default function SignIn() {
 
   const setFinals = (event) => {
     event.preventDefault();
+    console.log("Attempting to set final values");
     setFinalPassword(password);
     setFinalUsername(userName);
   }
@@ -74,7 +76,10 @@ export default function SignIn() {
                         <Form.Label className="text-center">
                           Username
                         </Form.Label>
-                        <Form.Control type="username" placeholder="Enter username" onChange={e => setUserName(e.target.value)} />
+                        <Form.Control type="username" placeholder="Enter username" onChange={e => {
+                          setUserName(e.target.value);
+                          console.log("updating username to " + e.target.value)
+                        } }/>
                       </Form.Group>
 
                       <Form.Group

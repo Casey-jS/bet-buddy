@@ -4,7 +4,14 @@ import {LinkContainer} from 'react-router-bootstrap'
 import UserContext from '../UserContext'
 
 export default function NavMenu(){
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    console.log(user);
+
+    const logOut = () => {
+        setUser("");
+    }
+    
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -16,6 +23,12 @@ export default function NavMenu(){
                             <LinkContainer to="/teams/">
                                 <Nav.Link>Teams</Nav.Link>
                             </LinkContainer>
+                            { user === "" ? "" : <LinkContainer to={"/favplayers/" + user + "/"}>
+                                                    <Nav.Link>Favorite Players</Nav.Link>
+                                                </LinkContainer>
+                            }
+                            
+
                             <NavDropdown title="League Leaders" id="collapsible-nav-dropdown">
                                 <LinkContainer to="/players/sort/ppg/">
                                     <NavDropdown.Item>Points</NavDropdown.Item>
@@ -35,8 +48,8 @@ export default function NavMenu(){
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {user != {} ? <Nav.Link>{user}</Nav.Link> : <div></div>}
-                            {user == {} ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
+                            {user !== "" ?  <Nav.Link onClick={logOut}>Sign Out</Nav.Link> : <div></div>}
+                            {user === "" ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

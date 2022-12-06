@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { json } from "react-router-dom";
+import UserContext from "./UserContext";
+
 // This module contains the methods that will return a promise
 let apiURL = "http://127.0.0.1:5000/"
 export default class NbaAPI{
+
+    
+
     async fetchTop10(stat){
         const response = await fetch('http://127.0.0.1:5000/top10/' + stat + '/');
         return await response.json();
@@ -44,6 +51,32 @@ export default class NbaAPI{
 
     async getLastFiveGames(playerID){
         const response = await fetch("http://127.0.0.1:5000/last5/" + playerID + "/");
+        return await response.json();
+    }
+
+    async addFavoritePlayer(user, playerID){
+
+        const postOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json.stringify({userName: user, player: playerID})
+        };
+        const response = await fetch("http://127.0.0.1:5000/newfavplayer/");
+        return await response.json();
+    }
+
+    async fetchFavoritePlayers(userName){
+
+        const response = await fetch("http://127.0.0.1:5000/favplayers/" + userName + "/");
+        return await response.json();
+    }
+
+    async fetchTeamLog(teamID){
+        const response = await fetch("http://127.0.0.1:5000/teamlogs/" + teamID + "/")
         return await response.json();
     }
 }

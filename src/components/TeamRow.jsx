@@ -2,8 +2,6 @@ import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
 export default function TeamRow(props){
-    console.log("From TeamRow, props:")
-    console.log(props);
 
     return <tr>
             <td><a href={"/teams/" + props.teamID + "/"}>{props.teamName}</a></td>

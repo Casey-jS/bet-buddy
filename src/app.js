@@ -9,20 +9,23 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import PlayerViewWrapper from './components/PlayerViewWrapper';
 import UserContext from './UserContext';
+import FavPlayersWrapper from './components/FavPlayersWrapper';
 
 
 function App(){
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState("")
     return (
-        <>
-            <NavMenu />
+        <> 
+            
             <UserContext.Provider value={{user, setUser}}>
-            <Routes>
+                <NavMenu />
+                <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/teams/" element={<Teams />} />
                     <Route path="/signin/" element={<SignIn />} />
                     <Route path="/signup/" element={<SignUp />} />
+                    <Route path="/favplayers/:userName/" element={<FavPlayersWrapper />} />
                     <Route path="/teams/:teamID/" element={<TeamViewWrapper />} />
                     <Route path="/players/:playerID/" element={<PlayerViewWrapper />} />
                     <Route path="players/sort/ppg/" element={<LeagueLeaders stat="ppg" />} />
@@ -30,8 +33,7 @@ function App(){
                     <Route path="players/sort/rpg/" element={<LeagueLeaders stat="rpg" />} />
                     <Route path="players/sort/spg/" element={<LeagueLeaders stat="spg" />} />
                     <Route path="players/sort/bpg/" element={<LeagueLeaders stat="bpg" />} />
-\
-            </Routes>
+                </Routes>
             </UserContext.Provider>
         </>
     )   
