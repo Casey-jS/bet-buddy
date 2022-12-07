@@ -8,6 +8,7 @@ export default function PlayerView({playerID}){
     let api = new NbaAPI();
     const [user, setUser] = useState("");
 
+    // get the active user
     let getUser = () => {
         api.get_active_user().then(
             response => {

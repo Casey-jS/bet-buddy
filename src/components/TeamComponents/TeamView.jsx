@@ -12,7 +12,7 @@ export default function TeamView({teamID}){ // must use {} when passing in param
 
     let api = new NbaAPI();
 
-    let getRoster = async () => {
+    let getRoster = () => {
         setLoading(true);
         api.fetchRoster(teamID).then(
             rosterData => {
@@ -24,7 +24,7 @@ export default function TeamView({teamID}){ // must use {} when passing in param
 
     useEffect(getRoster, []);
 
-    let getLog = async () => {
+    let getLog = () => {
         api.fetchTeamLog(teamID).then(
             logData => {
                 setTable(logData)

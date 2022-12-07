@@ -1,7 +1,7 @@
 import {Table} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 
-import TeamRow from "./TeamRow"
+import {TeamRow} from "../TableRows"
 import {TeamHeader} from '../Headers'
 export default function TeamTable(props){
 

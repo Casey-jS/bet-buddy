@@ -1,7 +1,22 @@
 import NbaAPI from "./nbaAPI";
 import { useState } from "react";
 import { useEffect } from "react";
-import Standings from "./components/Standings";
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import {StandingsRow} from './components/TableRows'
+import { StandingsHeader } from './components/Headers'
+
+export function Standings(props){
+    
+    return (
+        <Table striped bordered hover size='sm' variant='dark'><tbody><StandingsHeader />{
+            props.teams.map((team, i) => (
+                <StandingsRow teamID={team["teamID"]} seed={i+1} name={team["teamName"]} record={team["record"]} home={team["home"]} away={team["away"]} last10={team["last10"]}key={i} />
+            ))
+        }</tbody></Table>
+    )
+}
+
 export default function HomePage(){
 
     let api = new NbaAPI();
@@ -27,9 +42,9 @@ export default function HomePage(){
     }
     useEffect(getEast, []);
 
-    return <div className="position-relative" style={{display: "flex", padding: "40px", backgroundColor: '#8e9190'}}>
-        <Standings teams={east} style={{position: "relative"}}/>{' '}
-        <Standings teams={west} />
+    return <div className="position-relative" style={{display: "flex", padding: "40px", alignItems: "center", cbackgroundColor: '#8e9190'}}>
+        <Standings teams={east} style={{position: "relative", float: "right"}}/>
+        <Standings teams={west} className="position-absolute top-0 end-0"/>
     </div>
 
 }

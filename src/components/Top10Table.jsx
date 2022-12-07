@@ -1,4 +1,4 @@
-import PlayerRow from './PlayerRow'
+import {PlayerRow} from './TableRows'
 import {LeagueLeaderHeader} from './Headers';
 import {Table} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';

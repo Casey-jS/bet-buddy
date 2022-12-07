@@ -1,4 +1,4 @@
-import TeamLogRow from './TeamLogRow'
+import {TeamLogRow} from '../TableRows'
 import {Table} from 'react-bootstrap'
 import {TeamLogHeader} from '../Headers'
 

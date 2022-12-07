@@ -1,6 +1,6 @@
 import React from "react";
 import {GameLogHeader} from "./components/Headers";
-import GameLogRow from "./components/GameLogRow";
+import {GameLogRow} from "./components/TableRows";
 import { Table } from "react-bootstrap";
 
 
