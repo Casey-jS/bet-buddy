@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import HomePage from './HomePage';
-import NbaAPI from './nbaAPI';
+import NbaAPI from '../nbaAPI';
 
 
-export default function SignIn() {
+export default function SignInPage() {
 
 
   const [userName, setUserName] = useState("default");

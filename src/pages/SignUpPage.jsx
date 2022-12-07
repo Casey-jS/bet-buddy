@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
-export default function SignUp(){
+export default function SignUpPage(){
     return (
         <div className="signInContainer">
       <Container>

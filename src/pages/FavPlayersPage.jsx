@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import NbaAPI from './nbaAPI';
-import Top10Table from './components/Top10Table';
-export default function FavPlayers({userName}){
+import NbaAPI from '../nbaAPI';
+import {Top10Table} from './LeagueLeadersPage';
+export default function FavPlayersPage({userName}){
 
 
     const [players, setPlayers] = useState([])

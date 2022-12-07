@@ -1,12 +1,12 @@
-import NbaAPI from "./nbaAPI";
+import NbaAPI from "../nbaAPI";
 import { useState } from "react";
 import { useEffect } from "react";
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import {StandingsRow} from './components/TableRows'
-import { StandingsHeader } from './components/Headers'
+import {StandingsRow} from '../components/TableRows'
+import { StandingsHeader } from '../components/Headers'
 
-export function Standings(props){
+export function StandingsTable(props){
     
     return (
         <Table striped bordered hover size='sm' variant='dark'><tbody><StandingsHeader />{
@@ -43,8 +43,8 @@ export default function HomePage(){
     useEffect(getEast, []);
 
     return <div className="position-relative" style={{display: "flex", padding: "40px", alignItems: "center", cbackgroundColor: '#8e9190'}}>
-        <Standings teams={east} style={{position: "relative", float: "right"}}/>
-        <Standings teams={west} className="position-absolute top-0 end-0"/>
+        <StandingsTable teams={east} style={{position: "relative", float: "right"}}/>
+        <StandingsTable teams={west} className="position-absolute top-0 end-0"/>
     </div>
 
 }

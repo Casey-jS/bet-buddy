@@ -1,7 +1,20 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import GameLog from "./GameLog";
-import NbaAPI from "./nbaAPI";
+
+import NbaAPI from "../nbaAPI";
+import {GameLogHeader} from "./Headers";
+import {GameLogRow} from "./TableRows";
+import { Table } from "react-bootstrap";
+
+
+function GameLogTable(props){
+
+    return <Table striped bordered hover variant='dark' style={{width: "50%"}}><tbody><GameLogHeader />{
+        props.games.map((game, i) => (
+            <GameLogRow opp={game['opp']} result={game['result']} pts={game['pts']} fg={game['fg']} fg3={game['fg3']} ast={game['ast']} reb={game['reb']} stl={game['stl']} blk={game['blk']} key={i} />
+        ))
+    }</tbody></Table>
+}
 
 export default function PlayerView({playerID}){
 
@@ -90,7 +103,7 @@ export default function PlayerView({playerID}){
                 
             </Card>
             <h1>Last 5 Games</h1>
-            <GameLog className="position-absolute top-0 end-0" games={gameLog} style={{marginLeft: "20px"}} />
+            <GameLogTable className="position-absolute top-0 end-0" games={gameLog} style={{marginLeft: "20px"}} />
             
         </div>
     )
