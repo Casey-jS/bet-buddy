@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import NbaAPI from './nbaAPI';
 import Top10Table from './components/Top10Table';
-import UserContext from './UserContext';
-export default function FavPlayers(){
+export default function FavPlayers({userName}){
 
-    const {user} = useContext(UserContext)
-    const [players, setPlayers] = useState([]);
+
+    const [players, setPlayers] = useState([])
 
     let api = new NbaAPI();
 
     let getPlayers = () => {
-        api.fetchFavoritePlayers(user).then(
+        api.fetchFavoritePlayers(userName).then(
+
             playerData => {
+                console.log("Fetching favorite players for " + userName);
                 setPlayers(playerData);
             }
         )

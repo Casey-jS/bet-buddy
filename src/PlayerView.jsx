@@ -2,17 +2,25 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import GameLog from "./GameLog";
 import NbaAPI from "./nbaAPI";
-import UserContext from "./UserContext";
-
 
 export default function PlayerView({playerID}){
 
-    const { user, setUser } = useContext(UserContext);
+    let api = new NbaAPI();
+    const [user, setUser] = useState("");
+
+    let getUser = () => {
+        api.get_active_user().then(
+            response => {
+                setUser(response['user'])
+            }
+        )
+    }
+    useEffect(getUser, [])
 
     const [player, setPlayer] = useState([]);
     const [picture, setPicture] = useState("/");
     const [gameLog, setGameLog] = useState([]);
-    let api = new NbaAPI();
+    
 
     // total player stats row
     let getPlayer = () => {
@@ -46,6 +54,14 @@ export default function PlayerView({playerID}){
         getHeadshot();
       }, [getHeadshot]);
 
+      let addToFavorites = () => {
+        api.addFavoritePlayer(user, player['id']).then(
+            response => {
+                console.log("Added player to favorites")
+            }
+        )
+      }
+
 
     return (
         <div className="position-relative" style={{display: "flex"}}>
@@ -65,7 +81,11 @@ export default function PlayerView({playerID}){
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Sign in to add to favorites!</Tooltip>}>
                     <Button variant='secondary'>Add to favorites</Button>
                 </OverlayTrigger>
-                     : <Button variant='info'>+ Add to favorites</Button>}
+                     : 
+                <OverlayTrigger overlay={<Tooltip id="tooltip-enabled">Double click to add to favorites!</Tooltip>}>
+                    <Button onDoubleClick={() => addToFavorites()}variant='info'>Add to favorites</Button>
+                </OverlayTrigger>
+                }
                 
             </Card>
             <h1>Last 5 Games</h1>

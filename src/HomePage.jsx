@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import UserContext from "./UserContext";
 import NbaAPI from "./nbaAPI";
 import { useState } from "react";
 import { useEffect } from "react";

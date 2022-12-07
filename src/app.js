@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import LeagueLeaders  from './LeagueLeaders';
 import Teams from './components/TeamComponents/Teams'
 import HomePage from './HomePage';
@@ -8,16 +8,27 @@ import TeamViewWrapper from './components/TeamComponents/TeamViewWrapper';
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import PlayerViewWrapper from './components/PlayerViewWrapper';
-import UserContext from './UserContext';
 import FavPlayersWrapper from './components/FavPlayersWrapper';
+import NbaAPI from './nbaAPI';
+import FavPlayers from './FavPlayers';
 
 
 function App(){
 
     const [user, setUser] = useState("")
+    let api = new NbaAPI();
+    let getUser = () => {
+        api.get_active_user().then(
+            res => {
+                setUser(res['user'])
+            }
+        )
+    }
+    useEffect(getUser, []);
+
+
     return (
         <> 
-            <UserContext.Provider value={{user, setUser}}>
                 <NavMenu />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
@@ -33,7 +44,7 @@ function App(){
                     <Route path="players/sort/spg/" element={<LeagueLeaders stat="spg" />} />
                     <Route path="players/sort/bpg/" element={<LeagueLeaders stat="bpg" />} />
                 </Routes>
-            </UserContext.Provider>
+
         </>
     )   
 }

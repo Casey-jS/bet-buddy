@@ -1,15 +1,33 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import UserContext from '../UserContext'
+import NbaAPI from '../nbaAPI'
+import { useEffect } from 'react'
 
 export default function NavMenu(){
-    const { user, setUser } = useContext(UserContext);
-    console.log(user);
+    const [user, setUser] = useState("");
+
+    console.log("The user in navbar is set to: " + user)
 
     const logOut = () => {
+        api.server_signout().then(
+            response => {
+                console.log(response);
+            }
+        )
         setUser("");
     }
+
+    let api = new NbaAPI();
+    let getUser = () => {
+        api.get_active_user().then(
+            response => {
+                setUser(response['user'])
+                console.log("Navbar setting current user to " + response['user']);
+            }
+        )
+    }
+    useEffect(getUser, [])
     
 
     return (

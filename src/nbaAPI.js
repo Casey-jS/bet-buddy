@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { json } from "react-router-dom";
-import UserContext from "./UserContext";
 
 // This module contains the methods that will return a promise
 let apiURL = "http://127.0.0.1:5000/"
@@ -63,9 +61,9 @@ export default class NbaAPI{
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: json.stringify({userName: user, player: playerID})
+            body: JSON.stringify({userName: user, player: playerID})
         };
-        const response = await fetch("http://127.0.0.1:5000/newfavplayer/");
+        const response = await fetch("http://127.0.0.1:5000/newfavplayer/", postOptions);
         return await response.json();
     }
 
@@ -87,6 +85,16 @@ export default class NbaAPI{
     async get_east_standings(){
         const response = await fetch("http://127.0.0.1:5000/standings/1/")
         return await response.json();
+    }
+
+    async get_active_user(){
+        const response = await fetch("http://127.0.0.1:5000/getuser/")
+        return await response.json();
+    }
+
+    async server_signout(){
+        const response = await fetch("http://127.0.0.1:5000/signout/")
+        return await response.json()
     }
 }
 
