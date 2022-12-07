@@ -1,5 +1,4 @@
 import React from 'react'
-import TeamTable from './TeamTable'
 import NbaAPI from '../nbaAPI'
 import {useEffect, useState} from 'react'
 import { RingLoader } from "react-spinners";

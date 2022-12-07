@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import NbaAPI from "../nbaAPI";
-import Roster from "./Roster";
 import { RingLoader } from "react-spinners";
 import {TeamLogRow} from '../components/TableRows'
 import {Table} from 'react-bootstrap'

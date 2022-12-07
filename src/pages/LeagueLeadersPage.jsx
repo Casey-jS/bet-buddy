@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState, useEffect, useCallback} from 'react'
-import Top10Table from './Top10Table';
 import NbaAPI from '../nbaAPI';
 import {PlayerRow} from '../components/TableRows'
 import {LeagueLeaderHeader} from '../components/Headers';

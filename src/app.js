@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import LeagueLeadersPage  from './LeagueLeaders';
-import TeamsPage from './components/TeamComponents/Teams'
+import LeagueLeadersPage  from './pages/LeagueLeadersPage';
+import TeamsPage from './pages/TeamsPage'
 import HomePage from './pages/HomePage';
 import {Routes, Route} from 'react-router-dom'
 import NavMenu from './components/NavMenu';
-import {TeamViewWrapper, PlayerViewWrapper, FavPlayersWrapper} from '../components/Wrappers';
+import {TeamViewWrapper, PlayerViewWrapper, FavPlayersWrapper} from './components/Wrappers';
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
-import NbaAPI from '../nbaAPI';
+import NbaAPI from './nbaAPI';
 
 
 

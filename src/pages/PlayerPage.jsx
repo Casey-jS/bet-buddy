@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import NbaAPI from "../nbaAPI";
-import {GameLogHeader} from "./Headers";
-import {GameLogRow} from "./TableRows";
+import {GameLogHeader} from "../components/Headers";
+import {GameLogRow} from "../components/TableRows";
 import { Table } from "react-bootstrap";
 
 
