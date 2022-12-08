@@ -2,7 +2,7 @@ import React from 'react'
 import NbaAPI from '../nbaAPI'
 import {useEffect, useState} from 'react'
 import { RingLoader } from "react-spinners";
-import {Table} from 'react-bootstrap'
+import {Card, Table} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {TeamRow} from "../components/TableRows"
@@ -17,6 +17,8 @@ function TeamTable(props){
     } </tbody></Table>);
 
 }
+
+
 
 
 

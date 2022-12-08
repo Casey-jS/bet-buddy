@@ -101,6 +101,12 @@ export default class NbaAPI{
         const response = await fetch("http://127.0.0.1:5000/top4/" + stat + "/")
         return await response.json();
     }
+
+    async fetch_team_info(teamID){
+        const response = await fetch("http://127.0.0.1:5000/teaminfo/" + teamID + "/");
+        return await response.json();
+    }
+
 }
 
 

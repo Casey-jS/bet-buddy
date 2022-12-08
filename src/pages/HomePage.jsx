@@ -22,7 +22,7 @@ function StandingsTable(props){
 function StatCard({stat}){
 
     const [players, setPlayers] = useState([]);
-    const [picture, setPicture] = useState("")
+    const [picture, setPicture] = useState("");
     const [loading, setLoading] = useState(true);
     const [playerID, setPlayerID] = useState(0);
 
