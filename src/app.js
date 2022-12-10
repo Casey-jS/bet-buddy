@@ -24,10 +24,9 @@ function App(){
     }
     useEffect(getUser, []);
 
-
     return (
         <> 
-                <NavMenu />
+                <NavMenu user={user}/>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/teams/" element={<TeamsPage />} />

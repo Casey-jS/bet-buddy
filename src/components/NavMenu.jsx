@@ -2,32 +2,20 @@ import { useState } from 'react'
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import NbaAPI from '../nbaAPI'
-import { useEffect } from 'react'
 
-export default function NavMenu(){
-    const [user, setUser] = useState("");
+export default function NavMenu(props){
 
-    console.log("The user in navbar is set to: " + user)
-
+    console.log("The user in navbar is set to: " + props.user)
+    let api = new NbaAPI();
     const logOut = () => {
         api.server_signout().then(
             response => {
                 console.log(response);
             }
         )
-        setUser("");
     }
 
-    let api = new NbaAPI();
-    let getUser = () => {
-        api.get_active_user().then(
-            response => {
-                setUser(response['user'])
-                console.log("Navbar setting current user to " + response['user']);
-            }
-        )
-    }
-    useEffect(getUser, [])
+    
     
 
     return (
@@ -41,7 +29,7 @@ export default function NavMenu(){
                             <LinkContainer to="/teams/">
                                 <Nav.Link>Teams</Nav.Link>
                             </LinkContainer>
-                            { user === "" ? "" : <LinkContainer to={"/favplayers/" + user + "/"}>
+                            { props.user === "" ? "" : <LinkContainer to={"/favplayers/" + props.user + "/"}>
                                                     <Nav.Link>Favorite Players</Nav.Link>
                                                 </LinkContainer>
                             }
@@ -66,8 +54,8 @@ export default function NavMenu(){
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {user !== "" ?  <Nav.Link onClick={logOut}>Sign Out</Nav.Link> : <div></div>}
-                            {user === "" ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
+                            {props.user !== "" ?  <Nav.Link onClick={() => logOut}>Sign Out</Nav.Link> : <div></div>}
+                            {props.user === "" ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

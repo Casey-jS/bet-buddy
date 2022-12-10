@@ -40,7 +40,6 @@ function StatCard({stat}){
             top4 => {
                 setPlayers(top4);
                 setPlayerID(top4[0]['id'])
-                setLoading(false);
             }
         )
     }, [stat])
@@ -54,6 +53,7 @@ function StatCard({stat}){
         api.fetchHeadshot(playerID).then(
             imageBlob => {
                 setPicture(URL.createObjectURL(imageBlob)); // occupy image with img fetched
+                setLoading(false);
             }
         )
       }, [playerID])
@@ -118,7 +118,7 @@ export default function HomePage(){
         <Container style={{marginBottom: "10"}}>
             <Row>
                 <Col>
-                    <CardGroup className="p-5">
+                    <CardGroup>
                         {stats.map((stat, i) => (
                             <StatCard className="p-2" stat={stat} key={i}/>
                         ))}

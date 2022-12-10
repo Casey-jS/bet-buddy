@@ -1,10 +1,7 @@
-import { json } from "react-router-dom";
 
 // This module contains the methods that will return a promise
 let apiURL = "http://127.0.0.1:5000/"
 export default class NbaAPI{
-
-    
 
     async fetchTop10(stat){
         const response = await fetch('http://127.0.0.1:5000/top10/' + stat + '/');
@@ -17,6 +14,7 @@ export default class NbaAPI{
     }
 
     async fetchHeadshot(id){
+        console.log("Fetching headshot for player " + id)
         const response = await fetch("https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + id + ".png");
         return await response.blob();
     }
@@ -64,6 +62,20 @@ export default class NbaAPI{
             body: JSON.stringify({userName: user, player: playerID})
         };
         const response = await fetch("http://127.0.0.1:5000/newfavplayer/", postOptions);
+        return await response.json();
+    }
+
+    async checkFavorited(user, playerID){
+        const postOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({userName: user, playerID: playerID})
+        };
+        const response = await fetch("http://127.0.0.1:5000/isfavorited/", postOptions)
         return await response.json();
     }
 

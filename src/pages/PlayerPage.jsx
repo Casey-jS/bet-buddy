@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Card, ListGroup, Button, OverlayTrigger, Tooltip, Container, Row, Table } from "react-bootstrap";
-
+import { Card, ListGroup, Button, OverlayTrigger, Tooltip, Container, Row, Table, Alert } from "react-bootstrap";
 import NbaAPI from "../nbaAPI";
-import {GameLogHeader} from "../components/Headers";
 
 
 
@@ -31,6 +29,7 @@ export default function PlayerView({playerID}){
 
     let api = new NbaAPI();
     const [user, setUser] = useState("");
+    const [favorited, setFavorited] = useState(false);
 
     // get the active user
     let getUser = () => {
@@ -76,6 +75,16 @@ export default function PlayerView({playerID}){
         )
       }
 
+      let checkFavorited = () => {
+        api.checkFavorited(user, playerID).then(
+            response => {
+                setFavorited(response['is_favorited']);
+            }
+        )
+      }
+
+      useEffect(checkFavorited, [])
+
 
     return (
         <div style={{backgroundColor: "#8e9190", padding: "50px"}}>
@@ -99,7 +108,13 @@ export default function PlayerView({playerID}){
                 </OverlayTrigger>
                      : 
                 <OverlayTrigger overlay={<Tooltip id="tooltip-enabled">Double click to add to favorites!</Tooltip>}>
-                    <Button onDoubleClick={() => addToFavorites()}variant='info'>Add to favorites</Button>
+                    <Button onDoubleClick={() =>{
+                        addToFavorites();
+                        setFavorited(true);
+                        <Alert variant='success'>Player has been added to favorites</Alert>
+                    }
+                     
+                     }variant='info'>Add to favorites</Button>
                 </OverlayTrigger>
                 }
                 
