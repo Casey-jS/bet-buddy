@@ -1,19 +1,41 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import NbaAPI from '../nbaAPI'
 
+
+
+
+
 export default function NavMenu(props){
 
     console.log("The user in navbar is set to: " + props.user)
+    const [user, setUser] = useState("");
+
+
     let api = new NbaAPI();
+
+    let getUser = () => {
+        api.get_active_user().then(
+            res => {
+                setUser(res['user'])
+            }
+        )
+    }
+    useEffect(getUser, []);
+
     const logOut = () => {
         api.server_signout().then(
             response => {
+                setUser("");
                 console.log(response);
             }
         )
     }
+
+    const [results, setResults] = useState([])
+
 
     
     
@@ -29,9 +51,16 @@ export default function NavMenu(props){
                             <LinkContainer to="/teams/">
                                 <Nav.Link>Teams</Nav.Link>
                             </LinkContainer>
-                            { props.user === "" ? "" : <LinkContainer to={"/favplayers/" + props.user + "/"}>
+                            <LinkContainer to="/toppicks/">
+                                    <Nav.Link>Top Picks</Nav.Link>
+                            </LinkContainer>
+                            { user === "" ? "" : <><LinkContainer to={"/favplayers/" + user + "/"}>
                                                     <Nav.Link>Favorite Players</Nav.Link>
                                                 </LinkContainer>
+                                                <LinkContainer to={"/picks/" + user + "/"}>
+                                                    <Nav.Link>My Picks</Nav.Link>
+                                                </LinkContainer>
+                                                </>
                             }
                             
 

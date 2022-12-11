@@ -4,10 +4,11 @@ import TeamsPage from './pages/TeamsPage'
 import HomePage from './pages/HomePage';
 import {Routes, Route} from 'react-router-dom'
 import NavMenu from './components/NavMenu';
-import {TeamViewWrapper, PlayerViewWrapper, FavPlayersWrapper} from './components/Wrappers';
+import {TeamViewWrapper, PlayerViewWrapper, FavPlayersWrapper, MyPicksWrapper} from './components/Wrappers';
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
 import NbaAPI from './nbaAPI';
+import TopPicks from './pages/TopPicks';
 
 
 
@@ -32,7 +33,9 @@ function App(){
                     <Route path="/teams/" element={<TeamsPage />} />
                     <Route path="/signin/" element={<SignInPage />} />
                     <Route path="/signup/" element={<SignUpPage />} />
+                    <Route path="/toppicks/" element={<TopPicks />} />
                     <Route path="/favplayers/:userName/" element={<FavPlayersWrapper />} />
+                    <Route path="/picks/:user/" element={<MyPicksWrapper />} />
                     <Route path="/teams/:teamID/" element={<TeamViewWrapper />} />
                     <Route path="/players/:playerID/" element={<PlayerViewWrapper />} />
                     <Route path="players/sort/ppg/" element={<LeagueLeadersPage stat="ppg" />} />

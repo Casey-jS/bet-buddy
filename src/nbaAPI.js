@@ -119,6 +119,37 @@ export default class NbaAPI{
         return await response.json();
     }
 
+    async fetch_top_picks(){
+        const response = await fetch("http://127.0.0.1:5000/toppicks/")
+        return await response.json()
+    }
+
+    async new_bet(player, playerID, user, amount, stat, opp){
+        const postOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user: user, 
+                playerID: playerID,
+                player: player,
+                amount: amount, 
+                stat: stat, 
+                opp: opp
+            })
+        };
+        const response = await fetch("http://127.0.0.1:5000/bets/new/", postOptions)
+        return await response.json();
+    }
+
+    async get_bets(user){
+        const response = await fetch("http://127.0.0.1:5000/bets/" + user + "/");
+        return await response.json();
+    }
+
 }
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip, Container, Row, Table, Alert } from "react-bootstrap";
 import NbaAPI from "../nbaAPI";
+import NewBet from "./NewBet";
 
 
 
@@ -30,6 +31,7 @@ export default function PlayerView({playerID}){
     let api = new NbaAPI();
     const [user, setUser] = useState("");
     const [favorited, setFavorited] = useState(false);
+    const [betting, setBetting] = useState(false);
 
     // get the active user
     let getUser = () => {
@@ -85,9 +87,14 @@ export default function PlayerView({playerID}){
 
       useEffect(checkFavorited, [])
 
+      let newBet = () => {
+        
+      }
+
 
     return (
         <div style={{backgroundColor: "#8e9190", padding: "50px"}}>
+            
             <Container>
                 <Row className="justify-content-md-center">
             <Card className="shadow" border="info" style={{width: "25%", backgroundColor: '#8e9190', margin: "0"}}>
@@ -119,8 +126,8 @@ export default function PlayerView({playerID}){
                 }
                 
             </Card>
-            </Row>
-            <Row>
+            {user === "" ? "" :
+            <NewBet name={player['fullName']} id={player['id']} user={user}/>}
                 <PlayerViewStats team={player['team']} age={player['age']} games={player['games']} ppg={player['ppg']} apg={player['apg']} rpg={player['rpg']} spg={player['spg']} bpg={player['bpg']} fgpct={player['fgpct']} fg3pct={player['fg3pct']} ftpct={player['ftpct']} />
             </Row>
             </Container>

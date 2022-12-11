@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"; // to get url parameters
 import PlayerPage from "../pages/PlayerPage";
 import TeamPage from "../pages/TeamPage";
 import FavPlayersPage from '../pages/FavPlayersPage';
-
+import { MyPicks } from "../pages/MyPicks";
 // wrappers used to render pages based on url parameters
 // params come from router
 
@@ -21,4 +21,9 @@ export function TeamViewWrapper(){
 export function FavPlayersWrapper(){
     const { userName } = useParams();
     return <FavPlayersPage userName={userName} />;
+}
+
+export function MyPicksWrapper(){
+    const {user} = useParams();
+    return <MyPicks user={user} />
 }
