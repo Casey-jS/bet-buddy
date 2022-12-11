@@ -12,12 +12,17 @@ export default function FavPlayersPage({userName}){
         api.fetchFavoritePlayers(userName).then(
 
             playerData => {
-                console.log("Fetching favorite players for " + userName);
+                if (playerData['found'] === false){
+                    setPlayers([]);
+                    return
+                }
+
+                playerData.pop()
                 setPlayers(playerData);
             }
         )
     }
     useEffect(getPlayers, []);
 
-    return <Top10Table players={players} />
+    return  <>{players === [] ? <div className="position-relative"><div className="position-absolute">No Players Found</div></div> : <Top10Table players={players} />}</>
 }

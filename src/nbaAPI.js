@@ -4,12 +4,12 @@ let apiURL = "http://127.0.0.1:5000/"
 export default class NbaAPI{
 
     async fetchTop10(stat){
-        const response = await fetch('http://127.0.0.1:5000/top10/' + stat + '/');
+        const response = await fetch(apiURL + "top10/" + stat + '/');
         return await response.json();
     }
 
     async fetchTeamStats(){
-        const response = await fetch('http://127.0.0.1:5000/teams/');
+        const response = await fetch(apiURL + "teams/");
         return await response.json();
     }
 
@@ -21,7 +21,7 @@ export default class NbaAPI{
 
     async fetchRoster(teamID){
         console.log("Fetching data for TeamID " + teamID);
-        const response = await fetch("http://127.0.0.1:5000/teams/" + teamID + "/")
+        const response = await fetch(apiURL + "teams/" + teamID + "/")
         return await response.json();
     }
 
@@ -35,18 +35,18 @@ export default class NbaAPI{
             body: JSON.stringify({ username: user, password: pswd })
         };
         // send username and password to api
-        const response = await fetch("http://127.0.0.1:5000/validateuser/", postOptions);
+        const response = await fetch(apiURL + "validateuser/", postOptions);
         return await response.json();
     }
 
     async fetchPlayer(playerID){
         
-        const response = await fetch("http://127.0.0.1:5000/players/" + playerID + "/");
+        const response = await fetch(apiURL + "players/" + playerID + "/");
         return await response.json();
     }
 
     async getLastFiveGames(playerID){
-        const response = await fetch("http://127.0.0.1:5000/last5/" + playerID + "/");
+        const response = await fetch(apiURL + "last5/" + playerID + "/");
         return await response.json();
     }
 
@@ -61,7 +61,7 @@ export default class NbaAPI{
             },
             body: JSON.stringify({userName: user, player: playerID})
         };
-        const response = await fetch("http://127.0.0.1:5000/newfavplayer/", postOptions);
+        const response = await fetch(apiURL + "newfavplayer/", postOptions);
         return await response.json();
     }
 
@@ -75,52 +75,52 @@ export default class NbaAPI{
             },
             body: JSON.stringify({userName: user, playerID: playerID})
         };
-        const response = await fetch("http://127.0.0.1:5000/isfavorited/", postOptions)
+        const response = await fetch(apiURL + "isfavorited/", postOptions)
         return await response.json();
     }
 
     async fetchFavoritePlayers(userName){
 
-        const response = await fetch("http://127.0.0.1:5000/favplayers/" + userName + "/");
+        const response = await fetch(apiURL + "favplayers/" + userName + "/");
         return await response.json();
     }
 
     async fetchTeamLog(teamID){
-        const response = await fetch("http://127.0.0.1:5000/teamlogs/" + teamID + "/")
+        const response = await fetch(apiURL + "teamlogs/" + teamID + "/")
         return await response.json();
     }
 
     async get_west_standings(){
-        const response = await fetch("http://127.0.0.1:5000/standings/0/")
+        const response = await fetch(apiURL + "standings/0/")
         return await response.json();
     }
     async get_east_standings(){
-        const response = await fetch("http://127.0.0.1:5000/standings/1/")
+        const response = await fetch(apiURL + "standings/1/")
         return await response.json();
     }
 
     async get_active_user(){
-        const response = await fetch("http://127.0.0.1:5000/getuser/")
+        const response = await fetch(apiURL + "getuser/")
         return await response.json();
     }
 
     async server_signout(){
-        const response = await fetch("http://127.0.0.1:5000/signout/")
+        const response = await fetch(apiURL + "signout/")
         return await response.json()
     }
 
     async fetch_top4(stat){
-        const response = await fetch("http://127.0.0.1:5000/top4/" + stat + "/")
+        const response = await fetch(apiURL + "top4/" + stat + "/")
         return await response.json();
     }
 
     async fetch_team_info(teamID){
-        const response = await fetch("http://127.0.0.1:5000/teaminfo/" + teamID + "/");
+        const response = await fetch(apiURL + "teaminfo/" + teamID + "/");
         return await response.json();
     }
 
     async fetch_top_picks(){
-        const response = await fetch("http://127.0.0.1:5000/toppicks/")
+        const response = await fetch(apiURL + "toppicks/")
         return await response.json()
     }
 
@@ -141,12 +141,12 @@ export default class NbaAPI{
                 opp: opp
             })
         };
-        const response = await fetch("http://127.0.0.1:5000/bets/new/", postOptions)
+        const response = await fetch(apiURL+ "bets/new/", postOptions)
         return await response.json();
     }
 
     async get_bets(user){
-        const response = await fetch("http://127.0.0.1:5000/bets/" + user + "/");
+        const response = await fetch(apiURL + "bets/" + user + "/");
         return await response.json();
     }
 

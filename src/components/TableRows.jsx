@@ -1,5 +1,6 @@
 import NbaAPI from "../nbaAPI";
 import React, {useState, useEffect, useCallback} from 'react'
+import { NBALogo } from "../staticTeams";
 
 // Exports all table rows used by the app
 
@@ -52,6 +53,7 @@ export function StandingsRow(props){
 export function TeamRow(props){
 
     return <tr>
+
             <td><a href={"/teams/" + props.teamID + "/"}>{props.teamName}</a></td>
             <td>{props.rank}</td>
             <td>{props.wins}</td>
@@ -80,6 +82,7 @@ export function GameLogRow(props){
 
 export function TeamLogRow(props){
     return <tr>
+        
         <td><a href={"/teams/" + props.teamID + "/"}>{props.opp}</a></td>
         <td>{props.res}</td>
         <td>{props.pts}</td>

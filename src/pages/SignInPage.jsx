@@ -4,7 +4,7 @@ import HomePage from './HomePage';
 import NbaAPI from '../nbaAPI';
 
 
-export default function SignInPage() {
+export default function SignInPage(props) {
 
 
   const [userName, setUserName] = useState("default");

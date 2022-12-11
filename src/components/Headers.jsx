@@ -14,6 +14,7 @@ export function TeamLogHeader(){
 
 export function TeamHeader(){
     return (<tr>
+
         <th>Name</th>
         <th>Rank</th>
         <th>Wins</th>

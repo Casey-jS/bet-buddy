@@ -31,7 +31,7 @@ function App(){
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/teams/" element={<TeamsPage />} />
-                    <Route path="/signin/" element={<SignInPage />} />
+                    <Route path="/signin/" element={<SignInPage setUser={setUser}/>} />
                     <Route path="/signup/" element={<SignUpPage />} />
                     <Route path="/toppicks/" element={<TopPicks />} />
                     <Route path="/favplayers/:userName/" element={<FavPlayersWrapper />} />

@@ -4,13 +4,9 @@ import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import NbaAPI from '../nbaAPI'
 
+export default function NavMenu(){
 
-
-
-
-export default function NavMenu(props){
-
-    console.log("The user in navbar is set to: " + props.user)
+    
     const [user, setUser] = useState("");
 
 
@@ -33,13 +29,6 @@ export default function NavMenu(props){
             }
         )
     }
-
-    const [results, setResults] = useState([])
-
-
-    
-    
-
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -83,8 +72,8 @@ export default function NavMenu(props){
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            {props.user !== "" ?  <Nav.Link onClick={() => logOut}>Sign Out</Nav.Link> : <div></div>}
-                            {props.user === "" ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
+                            {user !== "" ?  <Nav.Link onClick={logOut}>Sign Out</Nav.Link> : <div></div>}
+                            {user === "" ? <Nav.Link href="/signin/">Sign In</Nav.Link> : <div></div>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
