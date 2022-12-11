@@ -150,6 +150,23 @@ export default class NbaAPI{
         return await response.json();
     }
 
+    async validateSignUp(userName, password){
+        const postOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                userName: userName,
+                password: password
+            })
+        };
+        const response = await fetch(apiURL + "signup/", postOptions);
+        return await response.json();
+    }
+
 }
 
 

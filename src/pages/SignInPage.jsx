@@ -74,6 +74,7 @@ export default function SignInPage(props) {
                           Username
                         </Form.Label>
                         <Form.Control type="username" placeholder="Enter username" onChange={e => {
+                          e.preventDefault();
                           setUserName(e.target.value);
                           console.log("updating username to " + e.target.value)
                         } }/>
@@ -84,7 +85,12 @@ export default function SignInPage(props) {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                        <Form.Control type="password" placeholder="Password" onChange={e => {
+                            e.preventDefault();
+                            setPassword(e.target.value);
+                            }
+                          } 
+                        />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
